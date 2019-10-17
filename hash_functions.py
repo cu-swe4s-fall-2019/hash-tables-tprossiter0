@@ -1,3 +1,5 @@
+import sys
+
 
 def h_ascii(key, N):
     """
@@ -17,11 +19,20 @@ def h_ascii(key, N):
     """
     if((isinstance(key, str) is False) and (isinstance(N, int) is False)):
         raise Exception("Error, Key must be a string and N must be an integer")
+        sys.exit(1)
+        return
     elif(isinstance(N, int) is False):
         raise Exception("Error, N must be an integer")
+        sys.exit(1)
+        return
     elif(isinstance(key, str) is False):
         raise Exception("Error, Key must be a string")
-    return None
+        sys.exit(1)
+        return
+
+    key_sum = sum(map(ord, key))
+    hash_to_return = key_sum % N
+    return hash_to_return
 
 
 def h_rolling(key, N):
