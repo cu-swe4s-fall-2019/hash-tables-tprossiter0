@@ -7,7 +7,7 @@ import hash_functions as hf
 class TestHashFunctions(unittest.TestCase):
     def testKeyNonString1ASCII(self):
         with self.assertRaises(Exception) as ex:
-            hf.h_ascii(1, 50)
+            hf.h_ascii(12, 50)
         output = str(ex.exception)
         self.assertEqual(output, "Error, Key must be a string")
 
@@ -37,6 +37,13 @@ class TestHashFunctions(unittest.TestCase):
             hf.h_ascii(123, "wrong input")
         output = str(ex.exception)
         self.assertEqual(output, ermsg)
+
+    def testASCIIsum(self):
+        testkey = "abc"
+        testkey_ASCII_sum = 294
+        table_size = 290
+        expected_return_val = 4
+        self.assertEqual(expected_return_val, hf.h_ascii(testkey, table_size))
 
 
 if __name__ == '__main__':
